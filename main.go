@@ -6,8 +6,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, _ *http.Request) {
+	server := NewHttpServer("hello world")
+	server.Route("/", func(w http.ResponseWriter, _ *http.Request) {
 		io.WriteString(w, "Hello World")
 	})
-	http.ListenAndServe(":8080", nil)
+	server.Start(":8080")
 }
